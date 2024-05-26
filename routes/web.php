@@ -5,11 +5,18 @@ use App\Http\Controllers\AdminCategoryProductsController;
 use App\Http\Controllers\AdminProductsTypeController;
 use App\Http\Controllers\AdminAccessoryProductsController;
 use App\Http\Controllers\AdminAttributeController;
+use App\Http\Controllers\AdminCategoryPost;
+use App\Http\Controllers\AdminDashboardController;
+use App\Http\Controllers\AdminPostController;
 use App\Http\Controllers\AdminProductsController;
 use App\Http\Controllers\AdminTypeProductsController;
 use App\Http\Controllers\AdminUsersController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminUsersLoginController;
+use App\Http\Controllers\BuyProductNowController;
+use App\Http\Controllers\CartController;
+use App\Http\Controllers\IndexShoppingController;
+use App\Http\Controllers\ShowDataAllProduct;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,9 +29,9 @@ use App\Http\Controllers\AdminUsersLoginController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 
 ///viết route định nghĩa cho show admin login và regiter
@@ -105,6 +112,10 @@ Route::post('add-product',[AdminProductsController::class,'addDataProducts'])->n
 Route::get('delete-product/{id}',[AdminProductsController::class,'deleteProducts'])->name('deleteproduct');
 //sửa sản phẩm
 Route::get('update-product/{id}',[AdminProductsController::class, 'showIndexUpdateProduct'])->name('editproduct');
+
+//check trạng thái sản phẩm
+
+Route::get('checkproduct/{id}',[AdminProductsController::class, 'checkStatusProduct'])->name('checkproduct');
 ///@@LOẠI SẢN PHẨM
 
 Route::get('show-typeproducts',[AdminTypeProductsController::class,'showTypeProducts'])->name('showtypeproducts');
@@ -143,3 +154,65 @@ Route::get('delete-attribute/{id}',[AdminAttributeController::class, 'deleteAttr
 
 Route::get('update-attribute/{id}',[AdminAttributeController::class,'showEditAttribute'])->name('showupdateattribute');
 Route::post('update-attribute/{id}',[AdminAttributeController::class,'editAttribute'])->name('updateattribute');
+
+// @@ Danh mục bài viết
+
+Route::get('categorypost',[AdminCategoryPost::class,'showIndexCategoryPost'])->name('showindexcategorypost');
+
+///add
+Route::get('add-categorypost',[AdminCategoryPost::class, 'showIndexAddCategoryPost'])->name('showaddcategorypost');
+Route::post('add-categorypost',[AdminCategoryPost::class, 'addCategoryPost'])->name('addcategorypost');
+
+
+/// @@ bài viết
+
+Route::get('posts',[AdminPostController::class, 'showIndexPost'])->name('showindexpost');
+
+//thêm bài viết
+
+Route::get('add-post',[AdminPostController::class, 'showAddPost'])->name('showaddpost');
+Route::post('add-post',[AdminPostController::class, 'addPost'])->name('adddatapost');
+
+
+//xoá bài viết 
+Route::get('delete-post/{id}',[AdminPostController::class, 'deletePost'])->name('deletepost');
+
+//sửa bài viết
+
+Route::get('update-post/{id}',[AdminPostController::class, 'showUpdatePost'])->name('showindexupdatepost');
+Route::post('update-post/{id}',[AdminPostController::class, 'updateIndexDataPost'])->name('updatepost');
+
+
+// @@@ thực thi với trang dashboard
+
+Route::get('dashboard',[AdminDashboardController::class,'showIndexDashBoard'])->name('indexdashboard');
+
+//danh sách đơn hàng
+
+Route::get('oder-list',[AdminDashboardController::class, 'showIndexOderList'])->name('oderlist');
+
+
+///////////////////////////////////////
+//xử lý bên trang index
+// Route::get('/',[IndexShoppingController::class, 'showIndexShopping'])->name('indexshopping');
+
+Route::get('/',[IndexShoppingController::class, 'showIndexDataProduct'])->name('showindexdataproduct');
+
+///hiển thị chi tiết sản phẩm
+
+Route::get('detail/{id}',[IndexShoppingController::class,'showDetailProducts'])->name('detailproduct');
+
+//show toàn bộ sản phẩm
+// Route::get('all-product',ShowIndexAllProduct::class,'showDataAllProduct')->name('showallproduct');
+Route::get('show-all', [ShowDataAllProduct::class, 'showDataAllProduct'])->name('showallproduct');
+
+
+///show màn hình giỏ hàng
+Route::get('cart',[CartController::class, 'showIndexCart'])->name('showindexcart');
+//thêm vào gỏi hàng
+Route::get('add-cart/{id}',[CartController::class,'addToCart'])->name('addtocart');
+
+// mua hàng ngay
+
+Route::get('buynow',[BuyProductNowController::class, 'showIndexByProductNow'])->name('buyproductnow');
+

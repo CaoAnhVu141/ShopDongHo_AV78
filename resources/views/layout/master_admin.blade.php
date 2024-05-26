@@ -186,18 +186,15 @@
           <ul class="sidebar-menu" data-widget="tree">
             <li class="header">MAIN NAVIGATION</li>
             <li class="{{ Request::is('admin-datn') ? 'active' : '' }}">
-                <a href="">
+                <a href="{{ route('indexdashboard') }}">
                     <i class="fa fa-dashboard"></i> <span>Bảng điều khiển</span>
                 </a>
             </li>
-          {{-- @todo lai --}}
-
-
-            <li class="{{ Request::is('admin-datn/category*') ? 'active' : '' }}">
+            {{-- <li class="{{ Request::is('admin-datn/category*') ? 'active' : '' }}">
                 <a href="">
                     <i class="fa fa-edit"></i> <span>Nhóm sản phẩm</span>
                 </a>
-            </li>
+            </li> --}}
             <li class="{{ Request::is('admin-datn/menu*') ? 'active' : '' }}">
               <a href="{{ route('showcategory') }}">
                   <i class="fa fa-list"></i> <span>Danh mục sản phẩm</span>
@@ -232,10 +229,16 @@
                   <i class="fa fa-cart-arrow-down"></i> <span>Loại sản phẩm</span>
               </a>
           </li> 
+          
 
+          <li class="{{ Request::is('admin-datn/article*') ? 'active' : '' }}">
+            <a href="{{ route('showindexcategorypost') }}">
+                <i class="fa fa-circle-o-notch"></i> <span>Danh mục bài viết</span>
+            </a>
+          </li>
            
             <li class="{{ Request::is('admin-datn/article*') ? 'active' : '' }}">
-              <a href="">
+              <a href="{{ route('showindexpost') }}">
                   <i class="fa fa-circle-o-notch"></i> <span>Bài viết</span>
               </a>
             </li>

@@ -50,10 +50,10 @@
                         </td>
                         <td>{{ $item->description }}</td>
                         <td>
-                            @if ($item->checkactive == 1)
-                            <a href="" class="label label-info status-active">Hot</a>
+                            @if ($item->checkstatus == 1)
+                            <a href="{{ route('checkproduct',['id'=>$item->id_product]) }}" class="label label-info status-active">Hot</a>
                             @else
-                             <a href="" class="label label-default status-active">No</a>
+                             <a href="{{ route('checkproduct',['id'=>$item->id_product]) }}" class="label label-default status-active">No</a>
                              @endif
                         </td>
                         
