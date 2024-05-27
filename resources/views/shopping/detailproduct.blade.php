@@ -34,48 +34,30 @@
                             </div>
 
                             <ul class="nav navs sidebar menu" id='cssmenu'>
-
-
-
-
                                 <li class="item  first">
                                     <a href="/collections/onsale">
                                         <span>Sản phẩm khuyến mãi</span>
                                     </a>
                                 </li>
-
-
-
-
-
                                 <li class="item  ">
                                     <a href="/collections/hot-products">
                                         <span>Sản phẩm nổi bật</span>
                                     </a>
                                 </li>
-
-
-
-
-
                                 <li class="item  last">
                                     <a href="/collections/all">
                                         <span>Tất cả sản phẩm</span>
                                     </a>
                                 </li>
-
-
                             </ul>
 
                         </div>
 
                         <!-- Banner quảng cáo -->
                         <div class="list-group_l banner-left hidden-sm hidden-xs">
-
                             <a href="">
-                                <img src="./theme.hstatic.net/1000177652/1000229231/14/left_image_ad.jpg?v=90">
+                                <img src="{{ asset('admin/shopping/theme.hstatic.net/1000177652/1000229231/14/left_image_ad.jpg?v=90') }}">
                             </a>
-
                         </div>
                     </div>
                     <script>
@@ -128,15 +110,11 @@
                         <div class="row">
                             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                 <div id="surround">
-
                                     <div class="product-sale">
-
                                         <span>
                                             <label class="sale-lb">-</label> {{ $productdetail->discount }} %
                                         </span>
                                     </div>
-
-
                                     <a class="slide-prev slide-nav" href="javascript:">
                                         <i class="fa fa-arrow-circle-o-left fa-2"></i>
                                     </a>
@@ -160,7 +138,7 @@
                                                 </a>
                                             </li>
 											@endforeach
-                                           
+
                                         </ul>
                                     </div>
                                 </div>
@@ -172,47 +150,32 @@
                                     <span id="pro_sku"></span>
 
                                 </div>
-                                <div class="product-price" id="price-preview">
+                                <div class="product-price">
 
                                     <span>{{ $productdetail->price }}</span><del>1,200,000₫</del>
                                 </div>
-                                <form id="add-item-form" action="/cart/add" method="post" class="variants clearfix">
+                                {{-- <form id="add-item-form" action="/cart/add" method="post" class="variants clearfix"> --}}
                                     <div class="select clearfix" style="display:none">
                                         <select id="product-select" name="id" style="display:none">
-
                                             <option value="1012006173">Default Title - 800,000₫</option>
-
                                         </select>
                                     </div>
-
+                                    <form action="{{ route('addtocart',$productdetail->id_product) }}" method="POST">
+                                        @csrf
                                     <div class="select-wrapper ">
                                         <label>Số lượng</label>
-                                        <input id="quantity" type="number" name="quantity" min="1"
-                                            value="1" class="tc item-quantity" />
+                                        <input type="number" name="amount" min="1"
+                                            value="1" class="item-quantity" />
                                     </div>
-
-
                                     <div class="row">
-                                        {{-- <div class="col-lg-6 col-md-12 col-sm-6 col-xs-12">
-                                            <a href="{{ route('showindexcart') }}"><button
+                                            <div class="col-lg-6 col-md-12 col-sm-6 col-xs-12">
+                                            <button type="submit"
                                                 class=" btn-detail btn-color-add btn-min-width btn-mgt addtocart-modal"
                                                 name="value">
                                                 Thêm vào giỏ
                                             </button></a>
-                                        </div> --}}
-										{{-- <div class="col-lg-6 col-md-12 col-sm-6 col-xs-12">
-											<a href="{{ route('showindexcart') }}" class="btn-detail btn-color-add btn-min-width btn-mgt addtocart-modal">
-												Thêm vào giỏ
-											</a>
-										</div> --}}
-										
-										<div class="col-lg-6 col-md-12 col-sm-6 col-xs-12">
-											<a href="{{ route('addtocart',$productdetail->id_product) }}"><button
-											type="button" class="btn-detail btn-color-add btn-min-width btn-mgt addtocart-modal">
-												Thêm vào giỏ
-											</button></a>
-											
-										</div>
+                                        </div>
+                                        </form>
                                         <div class="col-lg-6 col-md-12 col-sm-6 col-xs-12">
                                             <a href="{{ route('buyproductnow') }}"><button type="button"
                                                 class=" btn-detail btn-color-buy btn-min-width btn-mgt">
@@ -220,7 +183,7 @@
                                             </button></a>
                                         </div>
                                     </div>
-                                </form>
+                                {{-- </form> --}}
                                 <div class="pt20">
                                     <!-- Begin tags -->
                                     <div class="tag-wrapper">
@@ -230,11 +193,11 @@
                                         <ul class="tags">
 
                                             <li class="active">
-                                                <a href="/collections/all/phu-kien-nam">phụ kiện nam</a>
+                                                <a href="">phụ kiện nam</a>
                                             </li>
 
                                             <li class="active">
-                                                <a href="/collections/all/thoi-trang-nam">thời trang
+                                                <a href="">thời trang
                                                     nam</a>
                                             </li>
 

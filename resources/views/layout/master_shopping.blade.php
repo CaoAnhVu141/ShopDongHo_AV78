@@ -464,7 +464,7 @@
                                     </div>
                                     <div class="hidden-lg hidden-md col-sm-5 col-xs-5 mobile-icons">
                                         <div>
-                                            <a href="#" title="Xem giỏ hàng"
+                                            <a href="{{ route('showindexcart') }}" title="Xem giỏ hàng"
                                                 class="mobile-cart"><span>5</span></a>
                                             <a href="#" id="mobile-toggle"><i class="fa fa-bars"></i></a>
                                         </div>
@@ -499,38 +499,14 @@
                                             <table id="cart-view">
                                                 <tr>
                                                     <td class="img">
-                                                        <a href="/products/dong-ho-nam-skmei-kim-xanh-duong">
-                                                            <img src="./product.hstatic.net/1000177652/product/1_e0ed7c0240734782a8268793dce0b9b8_small.jpg "
-                                                                alt="ĐỒNG HỒ NAM SKMEI KIM XANH DƯƠNG" />
-                                                        </a>
-                                                    </td>
-                                                    <td>
-                                                        <a class="pro-title-view"
-                                                            href="/products/dong-ho-nam-skmei-kim-xanh-duong"
-                                                            title="ĐỒNG HỒ NAM SKMEI KIM XANH DƯƠNG">ĐỒNG HỒ NAM SKMEI
-                                                            KIM XANH DƯƠNG</a>
-                                                        <span class="variant">
-
-                                                        </span>
-                                                        <span class="pro-quantity-view">2</span>
-                                                        <span class="pro-price-view">499,000₫</span>
-                                                        <span class="remove_link remove-cart">
-                                                            <a href='javascript:void(0);'
-                                                                onclick='deleteCart(1012030836)'><i
-                                                                    class='fa fa-times'></i></a>
-                                                        </span>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="img">
-                                                        <a href="/products/dong-ho-nam-tevise-1952-chay-co-cuc-chat">
-                                                            <img src="./product.hstatic.net/1000177652/product/7_0590d26379fb4da3ba8d9b57564ee6b0_small.jpg "
+                                                        <a href="">
+                                                            <img src=""
                                                                 alt="ĐỒNG HỒ NAM TEVISE 1952 CHẠY CƠ CỰC CHẤT" />
                                                         </a>
                                                     </td>
                                                     <td>
                                                         <a class="pro-title-view"
-                                                            href="/products/dong-ho-nam-tevise-1952-chay-co-cuc-chat"
+                                                            href=""
                                                             title="ĐỒNG HỒ NAM TEVISE 1952 CHẠY CƠ CỰC CHẤT">ĐỒNG HỒ
                                                             NAM TEVISE 1952 CHẠY CƠ CỰC CHẤT</a>
                                                         <span class="variant">
@@ -684,7 +660,7 @@
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="/blogs/news" class="" title="Blog">
+                                        <a href="{{ route('newlist') }}" class="" title="Blog">
                                             <span>Blog</span>
                                         </a>
                                     </li>

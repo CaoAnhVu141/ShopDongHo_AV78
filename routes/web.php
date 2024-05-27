@@ -16,6 +16,7 @@ use App\Http\Controllers\AdminUsersLoginController;
 use App\Http\Controllers\BuyProductNowController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\IndexShoppingController;
+use App\Http\Controllers\ListNewController;
 use App\Http\Controllers\ShowDataAllProduct;
 
 /*
@@ -210,9 +211,17 @@ Route::get('show-all', [ShowDataAllProduct::class, 'showDataAllProduct'])->name(
 ///show màn hình giỏ hàng
 Route::get('cart',[CartController::class, 'showIndexCart'])->name('showindexcart');
 //thêm vào gỏi hàng
-Route::get('add-cart/{id}',[CartController::class,'addToCart'])->name('addtocart');
+Route::post('cart/add/{id}', [CartController::class, 'addToCart'])->name('addtocart');
+
 
 // mua hàng ngay
 
 Route::get('buynow',[BuyProductNowController::class, 'showIndexByProductNow'])->name('buyproductnow');
+
+
+// @tin tức
+
+//show danh sách tin tức
+
+Route::get('news',[ListNewController::class,'showIndexListNews'])->name('newlist');
 

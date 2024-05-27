@@ -27,7 +27,7 @@
                         <span class="header-page clearfix">
                             <h1>Giỏ hàng</h1>
                         </span>
-                        <form action="/cart" method="post" id="cartformpage">
+                        {{-- <form action="" method="post" id="cartformpage"> --}}
                             <table>
                                 <thead>
                                     <tr>
@@ -39,55 +39,34 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @foreach (Cart::content() as $item)
                                     <tr>
                                         <td class="image">
                                             <div class="product_image">
-                                                <a href="/products/dong-ho-nam-skmei-kim-xanh-duong">
-                                                    <img src="./product.hstatic.net/1000177652/product/1_e0ed7c0240734782a8268793dce0b9b8_small.jpg "
-                                                        alt="ĐỒNG HỒ NAM SKMEI KIM XANH DƯƠNG" />
+                                                <a href="/">
+                                                    <img src="{{ asset($item->options->image) }}"
+                                                        alt="{{ $item->name }}" />
                                                 </a>
                                             </div>
                                         </td>
                                         <td class="item">
-                                            <a href="/products/dong-ho-nam-skmei-kim-xanh-duong">
-                                                <strong>ĐỒNG HỒ NAM SKMEI KIM XANH DƯƠNG</strong>
+                                            <a href="">
+                                                <strong>{{ $item->name }}</strong>
                                             </a>
                                         </td>
                                         <td class="qty">
-                                            <input type="number" size="4" name="updates[]" min="1"
-                                                id="updates_1012030836" value="2" onfocus="this.select();"
+                                            <input type="number" name="amount[{{ $item->rowId }}]" min="1"
+                                             value="{{ $item->qty }}" onfocus="this.select();"
                                                 class="tc item-quantity" />
                                         </td>
-                                        <td class="price">998,000₫</td>
+                                        <td class="price">{{ $item->price }}</td>
                                         <td class="remove">
-                                            <a href="/cart/change?line=1&quantity=0" class="cart">Xóa</a>
+                                            <a href="" class="cart">Xóa</a>
                                         </td>
                                     </tr>
-                                    <tr>
-                                        <td class="image">
-                                            <div class="product_image">
-                                                <a href="/products/dong-ho-nam-tevise-1952-chay-co-cuc-chat">
-                                                    <img src="./product.hstatic.net/1000177652/product/7_0590d26379fb4da3ba8d9b57564ee6b0_small.jpg "
-                                                        alt="ĐỒNG HỒ NAM TEVISE 1952 CHẠY CƠ CỰC CHẤT" />
-                                                </a>
-                                            </div>
-                                        </td>
-                                        <td class="item">
-                                            <a href="/products/dong-ho-nam-tevise-1952-chay-co-cuc-chat">
-                                                <strong>ĐỒNG HỒ NAM TEVISE 1952 CHẠY CƠ CỰC CHẤT</strong>
-                                            </a>
-                                        </td>
-                                        <td class="qty">
-                                            <input type="number" size="4" name="updates[]" min="1"
-                                                id="updates_1012006173" value="3" onfocus="this.select();"
-                                                class="tc item-quantity" />
-                                        </td>
-                                        <td class="price">2,400,000₫</td>
-                                        <td class="remove">
-                                            <a href="/cart/change?line=2&quantity=0" class="cart">Xóa</a>
-                                        </td>
-                                    </tr>
-                                    <tr class="summary">
+                                    @endforeach
+
+                                    {{-- <tr class="summary">
                                         <td class="image">&nbsp;</td>
                                         <td>&nbsp;</td>
                                         <td class="text-center"><b>Tổng cộng:</b></td>
@@ -97,7 +76,7 @@
                                             </span>
                                         </td>
                                         <td>&nbsp;</td>
-                                    </tr>
+                                    </tr> --}}
                                 </tbody>
                             </table>
                             <div class="row">
@@ -121,7 +100,7 @@
                                         <i class="fa fa-reply"></i> Tiếp tục mua hàng</a>
                                 </div>
                             </div>
-                        </form>
+                        {{-- </form> --}}
                     </div>
                 </div>
                 <!-- End cart -->
