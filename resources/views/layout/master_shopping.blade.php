@@ -10,7 +10,7 @@
 <head>
     <link rel="shortcut icon"
         href="{{ asset('admin/shopping/theme.hstatic.net/1000177652/1000229231/14/favicon.png?v=90') }}"
-        type="image/png" />
+        type="" />
     <meta charset="utf-8" />
     <title>AV78 Shop</title>
     <link rel="canonical" href="" />
@@ -20,7 +20,7 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="HandheldFriendly" content="true">
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=2.0, user-scalable=0' name='viewport' />
-    <link rel="dns-prefetch" href="">
+    <link rel="dns-prefetch" href="{{ asset('admin/shopping/hstatic.net') }}">
     <link rel="dns-prefetch" href="{{ asset('admin/shopping/hstatic.net') }}">
     <script>
         //<![CDATA[
@@ -182,16 +182,16 @@
                                     <div class="owl-wrapper" style="width: 600px; left: 0px; display: block;">
                                         <div class="owl-item" style="width: 100px;">
                                             <li class="product-thumb active"><a href="javascript:void(0);"
-                                                    data-image="./product.hstatic.net/1000177652/product/1_e0ed7c0240734782a8268793dce0b9b8_large.jpg">
+                                                    data-image="{{ asset('admin/shopping/product.hstatic.net/1000177652/product/1_e0ed7c0240734782a8268793dce0b9b8_large.jpg') }}">
                                                     <img
-                                                        src="./product.hstatic.net/1000177652/product/1_e0ed7c0240734782a8268793dce0b9b8_small.jpg"></a>
+                                                        src="{{ asset('admin/shopping/product.hstatic.net/1000177652/product/1_e0ed7c0240734782a8268793dce0b9b8_small.jpg') }}"></a>
                                             </li>
                                         </div>
                                         <div class="owl-item" style="width: 100px;">
                                             <li class="product-thumb"><a href="javascript:void(0);"
-                                                    data-image="./product.hstatic.net/1000177652/product/2_85fc5908867e488da92b768cb240477d_large.jpg">
+                                                    data-image="{{ asset('admin/shopping/product.hstatic.net/1000177652/product/2_85fc5908867e488da92b768cb240477d_large.jpg') }}">
                                                     <img
-                                                        src="./product.hstatic.net/1000177652/product/2_85fc5908867e488da92b768cb240477d_small.jpg"></a>
+                                                        src="{{ asset('admin/shopping/product.hstatic.net/1000177652/product/2_85fc5908867e488da92b768cb240477d_small.jpg') }}"></a>
                                             </li>
                                         </div>
                                         <div class="owl-item" style="width: 100px;">
@@ -221,7 +221,7 @@
                     </div>
                 </div>
                 <div class="col-md-7">
-                    <form id="form-quickview" method="post" action="/cart/add">
+                    <form id="form-quickview" method="post" action="">
                         <div class="quickview-information">
                             <div class="form-input">
                                 <div class="quickview-price product-price">
@@ -474,18 +474,18 @@
                             <div class="col-lg-7 hidden-md hidden-sm hidden-xs">
                                 <aside class="top-info">
                                     <div class="cart-info hidden-xs">
-                                        <a class="cart-link" href="">
+                                        <a class="cart-link" href="{{ route('showindexcart') }}">
                                             <span class="icon-cart">
                                             </span>
                                             <div class="cart-number">
-                                                5
+                                                {{ Cart::count() }}
                                             </div>
                                         </a>
                                         <div class="cart-view clearfix" style="display: none;">
                                             <table id="clone-item-cart" class="table-clone-cart">
                                                 <tr class="item_2 hidden">
                                                     <td class="img"><a href="" title=""><img
-                                                                src="" alt="" /></a></td>
+                                                                src="{{ url('https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.vecteezy.com%2Ffree-vector%2Fshopping-cart-logo&psig=AOvVaw2_kvHMByqxS5gA2KA7CQhT&ust=1717041407903000&source=images&cd=vfe&opi=89978449&ved=0CBIQjRxqFwoTCLDRzO77sYYDFQAAAAAdAAAAABAE') }}" alt="" /></a></td>
                                                     <td>
                                                         <a class="pro-title-view" href="" title=""></a>
                                                         <span class="variant"></span>
@@ -497,42 +497,48 @@
                                                 </tr>
                                             </table>
                                             <table id="cart-view">
+                                                @php
+                                                // Lấy 3 sản phẩm mới nhất theo thời gian thêm vào
+                                                $items = Cart::content()->sortByDesc('options.added_at')->take(3);
+                                                $total = 0; // Khởi tạo biến tổng tiền
+                                                @endphp
+                                                @foreach ($items as $item)
                                                 <tr>
                                                     <td class="img">
                                                         <a href="">
-                                                            <img src=""
-                                                                alt="ĐỒNG HỒ NAM TEVISE 1952 CHẠY CƠ CỰC CHẤT" />
+                                                            <img src="{{ asset($item->options->image) }}" alt="{{ asset($item->options->image) }}" />
                                                         </a>
                                                     </td>
                                                     <td>
-                                                        <a class="pro-title-view"
-                                                            href=""
-                                                            title="ĐỒNG HỒ NAM TEVISE 1952 CHẠY CƠ CỰC CHẤT">ĐỒNG HỒ
-                                                            NAM TEVISE 1952 CHẠY CƠ CỰC CHẤT</a>
-                                                        <span class="variant">
-
-                                                        </span>
-                                                        <span class="pro-quantity-view">3</span>
-                                                        <span class="pro-price-view">800,000₫</span>
+                                                        <a class="pro-title-view" href="" title="{{ $item->name }}">{{ $item->name }}</a>
+                                                        <span class="variant"></span>
+                                                        <span class="pro-quantity-view">{{ $item->qty }}</span>
+                                                        <span class="pro-price-view">{{ number_format($item->price) }}đ</span>
                                                         <span class="remove_link remove-cart">
-                                                            <a href='javascript:void(0);'
-                                                                onclick='deleteCart(1012006173)'><i
-                                                                    class='fa fa-times'></i></a>
+                                                            <a href='javascript:void(0);' onclick='deleteCart(1012006173)'><i class='fa fa-times'></i></a>
                                                         </span>
                                                     </td>
                                                 </tr>
+                                                @php
+                                                // Tính tổng tiền của từng sản phẩm
+                                                $subtotal = $item->price * $item->qty;
+                                                // Cộng vào tổng tiền
+                                                $total += $subtotal;
+                                                @endphp
+                                                @endforeach
                                             </table>
                                             <span class="line"></span>
                                             <table class="table-total">
                                                 <tr>
                                                     <td class="text-left">TỔNG TIỀN:</td>
-                                                    <td class="text-right" id="total-view-cart">3,398,000₫</td>
+                                                    <td class="text-right" id="total-view-cart">{{ number_format($total) }}₫</td> <!-- Hiển thị tổng tiền -->
                                                 </tr>
                                                 <tr>
-                                                    <td><a href="/cart" class="linktocart">Xem giỏ hàng</a></td>
-                                                    <td><a href="/checkout" class="linktocheckout">Thanh toán</a></td>
+                                                    <td><a href="{{ route('showindexcart') }}" class="linktocart">Xem giỏ hàng</a></td>
+                                                    <td><a href="{{ route('indexcheckout') }}" class="linktocheckout">Thanh toán</a></td>
                                                 </tr>
                                             </table>
+
                                         </div>
                                     </div>
                                     <div class="navholder">
@@ -567,7 +573,7 @@
                                     <div class="menu-logo">
 
                                         <h1 class="logo logo-mobile">
-                                            <a href="http://happylive.vn">
+                                            <a href="">
                                                 <img src="./theme.hstatic.net/1000177652/1000229231/14/logo.png?v=90"
                                                     alt="Happylive" class="img-responsive logoimg" />
                                             </a>
@@ -576,7 +582,7 @@
                                         <div class="nav-login">
                                             <a href="/account" class="cart " title="Tài khoản">
                                                 <svg class="icon icon-user" viewBox="0 0 32 32">
-                                                    <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                    <use xmlns:xlink=""
                                                         xlink:href="#icon-user">
                                                     </use>
                                                 </svg>

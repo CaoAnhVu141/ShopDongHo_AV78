@@ -59,24 +59,24 @@
                                              value="{{ $item->qty }}" onfocus="this.select();"
                                                 class="tc item-quantity" />
                                         </td>
-                                        <td class="price">{{ $item->price }}</td>
+                                        <td class="price">{{ number_format($item->price) }}đ</td>
                                         <td class="remove">
-                                            <a href="" class="cart">Xóa</a>
+                                            <a href="{{ route('deletecart',$item->rowId) }}" onclick="return confirm('Bạn có muốn xoá không nè')" class="cart">Xóa</a>
                                         </td>
                                     </tr>
                                     @endforeach
 
-                                    {{-- <tr class="summary">
+                                    <tr class="summary">
                                         <td class="image">&nbsp;</td>
                                         <td>&nbsp;</td>
                                         <td class="text-center"><b>Tổng cộng:</b></td>
                                         <td class="price">
                                             <span class="total">
-                                                <strong>3,398,000₫</strong>
+                                                <strong>{{ (Cart::total()) }}đ</strong>
                                             </span>
                                         </td>
                                         <td>&nbsp;</td>
-                                    </tr> --}}
+                                    </tr>
                                 </tbody>
                             </table>
                             <div class="row">
@@ -92,11 +92,13 @@
                                             value="">Thanh toán</button>
                                         <button type="submit" id="update-cart" class="button-default" name="update"
                                             value="">Cập nhật</button>
+                                        <a href="{{ route('deleteallcart') }}"><button type="submit" class="button-default" name="destroy"
+                                            value="">Xoá toàn bộ</button></a>
                                     </div>
                                 </div>
                                 <div class="col-md-12 col-sm-12  col-xs-12 continue-shop">
 
-                                    <a href="/collections/all">
+                                    <a href="{{ route('showindexdataproduct') }}">
                                         <i class="fa fa-reply"></i> Tiếp tục mua hàng</a>
                                 </div>
                             </div>

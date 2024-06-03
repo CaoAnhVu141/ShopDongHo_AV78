@@ -60,48 +60,84 @@ class CartController extends Controller
     //     }
 
     // }
+    // public function addToCart(Request $request, $id) {
+
+    //     // Cart::destroy();
+    //     $product = Product::find($id);
+
+    //     $amount = $request->input('amount');
+
+    //     $dataProduct = Cart::search(function ($cartItem, $rowId) use ($id) {
+    //         return $cartItem->id == $id;
+    //     });
+    
+    //     if ($dataProduct->isNotEmpty()) {
+    //         $rowId = $dataProduct->first()->rowId;
+    //         $currentQty = Cart::get($rowId)->qty;
+    //         Cart::update($rowId, $currentQty + $amount);
+    //     } else {
+    //         $options = [
+    //             'image' => $product->image,
+    //             'added_at' => now(),
+    //         ];
+    //         Cart::add([
+    //             'id' => $product->id,
+    //             'name' => $product->name,
+    //             'qty' => $amount,
+    //             'price' => $product->price,
+    //             'options' => $options,
+    //         ]);
+    //         return redirect()->route('showindexcart')->with('status', "Bạn đã thêm thành công");
+    //     }
+
+    //     return redirect()->back()->with('status', "Bạn chưa thêm thành công");
+    // }
     public function addToCart(Request $request, $id) {
-        $products = Product::find($id);
+        // Cart::destroy();
 
+        $product = Product::find($id);
+    
         $amount = $request->input('amount');
-        // dd($amount);  // Kiểm tra giá trị số lượng nhận được từ form
-
+    
         $dataProduct = Cart::search(function ($cartItem, $rowId) use ($id) {
-            return $cartItem->id_product == $id;
+            return $cartItem->id == $id;
         });
-
+    
         if ($dataProduct->isNotEmpty()) {
-            // Lấy rowId của sản phẩm
             $rowId = $dataProduct->first()->rowId;
-            // Lấy số lượng hiện tại của sản phẩm trong giỏ hàng
             $currentQty = Cart::get($rowId)->qty;
-            // Cập nhật số lượng của sản phẩm bằng tổng của số lượng hiện tại và số lượng mới
             Cart::update($rowId, $currentQty + $amount);
+            return redirect()->route('showindexcart')->with('status', "Sản phẩm đã được cập nhật trong giỏ hàng");
         } else {
             $options = [
-                'image' => $products->image
+                'image' => $product->image,
+                'added_at' => now(),
             ];
             Cart::add([
-                'id' => $products->id_product,
-                'name' => $products->name,
+                'id' => $product->id,
+                'name' => $product->name,
                 'qty' => $amount,
-                'price' => $products->price,
+                'price' => $product->price,
                 'options' => $options,
             ]);
-            return redirect()->route('showindexcart')->with('status', "Bạn đã thêm thành công");
+            return redirect()->route('showindexcart')->with('status', "Sản phẩm đã được thêm vào giỏ hàng");
         }
-
-        return redirect()->back()->with('status', "Bạn chưa thêm thành công");
-
     }
 
-    // public function addToCart($id)
-    // {
-    //     Cart::add(
-    //         $id, "Product", 12,2000
-    //     );
-    //     return Cart::content();
-    // }
+
+
+    public function deteleDataCart($rowId)
+    {
+        Cart::remove($rowId);
+        return redirect()->route('showindexcart');
+    }
+
+    public function deleteAllDataCart()
+    {
+        Cart::destroy();
+        return redirect()->route('showindexcart');
+
+    }
 
 
 }

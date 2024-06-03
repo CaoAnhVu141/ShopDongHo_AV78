@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminUsersLoginController;
 use App\Http\Controllers\BuyProductNowController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\CheckOutController;
 use App\Http\Controllers\IndexShoppingController;
 use App\Http\Controllers\ListNewController;
 use App\Http\Controllers\ShowDataAllProduct;
@@ -212,7 +213,10 @@ Route::get('show-all', [ShowDataAllProduct::class, 'showDataAllProduct'])->name(
 Route::get('cart',[CartController::class, 'showIndexCart'])->name('showindexcart');
 //thêm vào gỏi hàng
 Route::post('cart/add/{id}', [CartController::class, 'addToCart'])->name('addtocart');
-
+//xoá toàn bộ giỏ hàng
+Route::get('delete-allcart',[CartController::class, 'deleteAllDataCart'])->name('deleteallcart');
+//xoá từng sản phẩm trong giỏ hàng
+Route::get('delete-cart/{rowId}',[CartController::class, 'deteleDataCart'])->name('deletecart');
 
 // mua hàng ngay
 
@@ -225,3 +229,10 @@ Route::get('buynow',[BuyProductNowController::class, 'showIndexByProductNow'])->
 
 Route::get('news',[ListNewController::class,'showIndexListNews'])->name('newlist');
 
+
+// @@Loadmore
+// Route::get('load-more',[IndexShoppingController::class, 'loadMoreDataProduct'])->name('loadmoreproduct');
+
+/// @@ check out
+//Show check out
+Route::get('checkout',[CheckOutController::class, 'showIndexCheckOut'])->name('indexcheckout');

@@ -1,4 +1,4 @@
-@extends('layout.master_shopping')
+{{-- @extends('layout.master_shopping')
 @section('content')
     <section id="content" class="clearfix container">
         <div class="row">
@@ -15,11 +15,13 @@
                                     <span class="icon"><img
                                             src="./theme.hstatic.net/1000177652/1000229231/14/icon_featured.png?v=90"
                                             alt=""></span>
+
                                 </aside>
                             </div>
                         </div>
                         <!--Product loop-->
                         <div class="row content-product-list products-resize">
+
 							@foreach ($products as $item)
 							<div class="col-md-3 col-sm-6 col-xs-6 pro-loop">
                                 <div class="product-block product-resize">
@@ -37,13 +39,13 @@
                                         </a>
                                         <div class="actionss">
                                             <div class="btn-cart-products">
-                                                <a href="">
-                                                    <i class="fa fa-heart" aria-hidden="true"></i>
+                                                <a href="xemgiohang.html">
+                                                    <i class="fa fa-shopping-bag" aria-hidden="true"></i>
                                                 </a>
                                             </div>
                                             <div class="view-details">
-                                                <a href="{{ route('detailproduct',$item->id_product) }}" class="view-detail">
-                                                    <span><i class="fa fa-info-circle"> </i></span>
+                                                <a href="chitietsanpham.html" class="view-detail">
+                                                    <span><i class="fa fa-clone"> </i></span>
                                                 </a>
                                             </div>
                                             <div class="btn-quickview-products">
@@ -58,26 +60,21 @@
                                         <h3 class="pro-name"><a href="{{ route('detailproduct',['id' =>$item->id_product]) }}"
                                                 title="{{ $item->name }}">{{ $item->name }}</a></h3>
                                         <div class="pro-prices">
-                                            <p class="pro-price">{{ number_format($item->price) }}đ</p>
-                                            <p class="pro-price-del text-left"><del class="compare-price">{{ number_format($item->price) }}đ</del></p>
+                                            <p class="pro-price">{{ $item->price }}</p>
+                                            <p class="pro-price-del text-left"><del class="compare-price">{{ $item->price }}</del></p>
                                         </div>
                                     </div>
                                 </div> 
                             </div>
 							@endforeach
+
                             </div>
                         <div class="row">
                             <div class="col-lg-12 col-sm-12 col-xs-12  pull-center center">
-                                <a class="btn btn-readmore" href="#" role="button">Xem
+                                <a class="btn btn-readmore" href="" role="button">Xem
                                     thêm</a>
                             </div>
                         </div>
-                        {{-- <div class="row">
-                            <div class="col-lg-12 col-sm-12 col-xs-12 pull-center center">
-                                <a class="btn btn-readmore" href="" role="button">Xem thêm</a>
-                            </div>
-                        </div> --}}
-
                     </div>
                     <!--Product loop-->
                     <div class="row">
@@ -267,4 +264,4 @@
             </div>
         </div>
     </section>
-@endsection
+@endsection --}}
